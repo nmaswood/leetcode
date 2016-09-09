@@ -49,16 +49,17 @@ class Solution(object):
         elif head.next is None:
             return None
         else:
-            return sub(head, 0, n, head, head)
+            return sub(head, 1, n, head, head)
 
 a = ListNode(1)
 b = ListNode(2)
-c = ListNode(3)
-d = ListNode(4)
+#c = ListNode(3)
+#d = ListNode(4)
 
 a.next = b
-b.next = c
-c.next = d
+#b.next = c
+#c.next = d
 
 r = Solution()
-x = r.removeNthFromEnd(a,3)
+x = r.removeNthFromEnd(a,1)
+print (x)

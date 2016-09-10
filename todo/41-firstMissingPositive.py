@@ -1,39 +1,32 @@
 class Solution(object):
-
-    def sum_range(self, lo,hi):
-
-        return sum(range(lo,hi + 1))
-
-
     def firstMissingPositive(self, nums):
         """
         :type nums: List[int]
         :rtype: int
         """
-
         if nums == []:
             return 1
 
-        lo = min(nums)
-        hi= max(nums)
+        MIN = min(nums)
+        MAX = max(nums)
+        SUM = sum(nums)
+        acc = 0
 
-        expected = self.sum_range(lo,hi)
-        actual = sum(nums)
+        for x in range(MIN, MAX + 1):
+            acc+= x
 
-        if expected == actual:
-            prev = lo - 1
-            _next = hi + 1
+        print ('acc', acc)
+        print ('sum', SUM)
+        print('res', acc - SUM)
 
-            if prev > 0:
-                return prev
-            else:
-                return _next
-        else:
-            return expected - actual
+        if acc - SUM == 0:
+            if MIN != 0:
+                return MIN - 1
+            return MAX + 1
 
-#r = Solution()
+        return acc - SUM
 
-#i = [3,4,-1,1]
-#x = r.firstMissingPositive(i)
+r = Solution()
+res = r.firstMissingPositive([1])
+print (res)
 
-#print (x)

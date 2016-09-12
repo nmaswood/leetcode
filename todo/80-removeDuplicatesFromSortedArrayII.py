@@ -3,14 +3,22 @@ class Solution(object):
     def mark(self, nums):
 
         prev = None
+        prevCounter = 0
 
         t = 0
 
         for index, num in enumerate(nums):
 
             if num == prev:
-                nums[index] = None
-                t+=1
+
+                if prevCounter == 2:
+                    nums[index] = None
+                    t+=1
+                    prev = 0
+                else:
+                    prevCounter += 1
+            else:
+                prev = 0
 
             prev = num
 

@@ -3,50 +3,43 @@ from itertools import groupby
 
 class Solution(object):
 
-    def twoSum(self, counted, target):
-
-        skip = set()
-
-        sols = []
-
-        for k,v in counted.items():
-
-            if k not in skip:
-
-                need = target - k
-
-                if need in counted:
-
-                    if need == k and counted[k] == 1:
-                        pass
-                    else:
-                        sols.append([k,need])
-                        skip.add(need)
-
-        return sols
-
     def threeSum(self, nums):
         """
         :type nums: List[int]
         :rtype: List[List[int]]
         """
 
-        v = Counter(nums)
+        sols = set()
 
-        sols = []
+        l = len(nums)
 
-        skip = set()
+        nums = sorted(nums)
 
-        for key, value in v.items():
+        for i in range(l - 2):
+            start = nums[i]
+            left = i + 1
+            right = l - 1
+            while left < right:
 
-            sub_sols = self.twoSum(v, -key)
+                val1 = nums[left]
+                val2 = nums[right]
 
-            if sub_sols:
-                sols += [[key] + x for x in sub_sols]
+                sum_val = val1 + val2
 
-        sorted_sols = sorted(sols)
-        dedup = [sorted_sols[i] for i in range(len(sols)) if i == 0 or sorted_sols[i] != sorted_sols[i-1]]
-        return dedup
+                diff = start + val1 + val2 == 0
+
+                if diff:
+
+                    sols.add(tuple(sorted((start, val1, val2))))
+                    left +=1
+
+                elif diff < 0:
+
+                    left += 1
+                else:
+                    right -= 1
+        return list(sols)
 
 r = Solution()
-r.threeSum([-1,0,1,2,-1,-4])
+res = r.threeSum([-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6])
+print (res)

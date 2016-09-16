@@ -1,24 +1,21 @@
 class Solution(object):
 
     def mark(self, nums):
+        print(nums)
 
-        prev = None
-        prevCounter = 0
+        prev = nums[0]
+        prevCounter = 1
 
-        t = 0
-
-        for index, num in enumerate(nums):
+        for index, num in enumerate(nums[1:]):
 
             if num == prev:
 
                 if prevCounter == 2:
-                    nums[index] = None
-                    t+=1
-                    prev = 0
+                    nums[index + 1] = None
                 else:
                     prevCounter += 1
             else:
-                prev = 0
+                prevCounter = 1
 
             prev = num
 
@@ -33,6 +30,9 @@ class Solution(object):
                 return idx
 
     def removeDuplicates(self, nums):
+
+        if nums == []:
+            return
 
         nums = self.mark(nums)
 
@@ -57,5 +57,5 @@ class Solution(object):
 
 
 r = Solution()
-res = r.removeDuplicates([0,0,0,0,0,1,2,2,3,3,4,4])
+res = r.removeDuplicates([0,0,0,0,0,1,2,2,3,3,4,4,4, 5,5,5,5,5])
 print (res)

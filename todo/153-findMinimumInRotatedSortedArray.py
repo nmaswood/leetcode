@@ -1,16 +1,19 @@
 import heapq
 
 class Solution(object):
-    def findKthLargest(self, nums, k):
+    def findMin(self, nums):
         """
         :type nums: List[int]
-        :type k: int
         :rtype: int
         """
         heap = []
 
         for num in nums:
+            heapq.heappush(heap, num)
 
-            heapq.heappush(heap, nums)
+        return heapq.heappop(heap)
 
-        return heap[-k]
+r = Solution()
+res = r.findMin([4,5,6,7,0,1,2])
+print (res)
+

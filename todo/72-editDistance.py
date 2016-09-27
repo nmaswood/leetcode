@@ -1,12 +1,15 @@
 from sys import exit
 class Solution(object):
+    def correctOrder(self,word1,word2):
+        if len(word1) > len(word2):
+            return word1, word2
+        return word2, word1
     def minDistance(self, word1, word2):
 
+        # make sure words are in correct order by len
+        word1, word2 = self.correctOrder(word1,word2)
         if len(word2) > len(word1):
             word1, word2 = word2, word1
-        print (word1, word2)
-        exit()
-
 
         """
         :type word1: str
@@ -17,15 +20,21 @@ class Solution(object):
         l1 = len(word1)
         l2 = len(word2)
 
-        b = [[0] * (l1 + 1)] * (l2 + 1)
+        # Intialize matrix to save values
 
+        T = [[0 for _ in range(l1 + 1)] for _ in range(l2 + 1)]
+
+
+        # Initialize Base Steps
         for i in range(l1 + 1):
-            b[0][i] = i
+            T[0][i] = i
 
         for j in range(l2 + 1):
-            b[j][0] = j
+            T[j][0] = j
 
-        for i in range(1,l1):
+        print (T)
+        # Choose the minimum of insert replaceing and deleting
+        for i in range(1,l1 + 1):
             for j in range(1,l2):
 
                 let_i = word1[i]
@@ -33,15 +42,14 @@ class Solution(object):
 
                 replace = int(let_i != let_j)
 
-                print ('j',j)
-                print ('i',i)
-                b[i][j] = min(
-                    replace + b[i-1][j-1],
-                    1 + b[i][j-1],
-                    1 + b[i-1][j],
+                T[i][j] = min(
+                    replace + T[i-1][j-1],
+                    1 + T[i][j-1],
+                    1 + T[i-1][j],
                 )
-        print (b[-1][-1])
+        print (T)
+        return T[-1][-1]
 
 r = Solution()
-res = r.minDistance('horse', 'ros')
-
+res = r.minDistance('horse', 'horses')
+print (res)

@@ -17,7 +17,7 @@ class Solution(object):
 
         def f(root):
 
-            if root is None or len(acc)  - 1 >  k:
+            if root is None or len(acc)  - 1 == k:
                 return
 
             f(root.left)

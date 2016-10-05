@@ -6,28 +6,21 @@ class Solution(object):
         :rtype: bool
         """
 
-        ls = len(s)
-        lp = len(p)
+        len_string, len_pattern = len(s), len(p)
 
-        T = [[False for _ in range(ls + 1)] for _ in range(lp + 1)]
+        T = [[0 for _ in range(len_string + 1)] for _ in range(len_pattern + 1)]
 
         T[0][0] = True
 
-        for i in range(1,ls):
-            for j in range(1,lp):
+        for i in range(len_string  + 1 ):
+            for j in range(len_pattern + 1):
 
-                letter_text, letter_pattern = s[i-1], p[j-1]
-
-                if letter_text == letter_pattern or letter_pattern == '.':
-                    T[i][j] = T[i-1][j-1]
-                else if (latter_pattern = '*'):
-                    T[i][j] = T[i][j-2]
-                    letter_text_prev, letter_pattern_prev = s[i-2], p[j-2]
-
-                    if (letter_pattern_prev == '.' or letter_text_prev == letter_patter_prev):
-                        T[i][j] = T[i][j] or T[i-1][j]
+                if p[j-1] == '*':
+                    T[i][j] = T[i][j-2] and T[i-1][j] and (s[i-1] == p[j-2] or p[j-2] == '.')
                 else:
 
-                    T[i][j] = False
+                    T[i][j] = i > 0 and T[i-1][j-1] and (s[i-1] == p[j-1] or p[j-1] == '.')
+
+        return T[-1][-1]
 
 

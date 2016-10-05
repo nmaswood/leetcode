@@ -7,19 +7,42 @@ class Solution(object):
         :type n: int
         :rtype: void Do not return anything, modify nums1 in-place instead.
         """
-        def ins(l, x):
-            if not l:
-                return [x]
-            else:
-                first = l[0]
-                if x <= first:
-                    return [x] + l
-                else:
-                    return [first] + ins(l[1:], x)
 
-        for num in nums2:
-            nums1 = ins(nums1, num)
-        print (nums1)
+
+        len_1 = len(nums1)
+        len_2 = len(nums1)
+
+        for index, letter in range(len_2):
+
+            nums1[index] = nums1[len_1 + index]
+            nums1[index] = None
+
+        def merge(num1index, index1, index2):
+
+            if index1 == len_1 + len_2 and index2 == len_2:
+                return
+
+            if index1 == len_1 + len_2:
+                nums1[num1index] = nums2[index2]
+                return merge(num1index + 1 , index1, index2 + 1)
+
+            if index2 == len_2:
+                nums1[num1index] = nums2[index2]
+                return merge(num1index + 1 , index1 + 1, index2)
+
+            num1, num2 = nums1[index1], nums2[index2]
+
+            if num1 < num2:
+
+                nums1[num1index] = num1
+                return merge(num1index + 1, index1 + 1, index2)
+
+            else:
+                nums1[num1index] = num2
+                return merge(num1index + 1, index1 + 1, index2)
+
+        merge(0, len_1, 0)
+
 
 r = Solution()
 

@@ -1,4 +1,5 @@
-class Solution(object):
+c
+ass Solution(object):
     def climbStairs(self, n):
         """
         :type n: int

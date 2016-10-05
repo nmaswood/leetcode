@@ -20,7 +20,7 @@ class Solution:
         return result
 
     def SearchPalindrome(self, string, start, end):
-        while(start>=0 and end < len(string) and string[start]==string[end]):
+        while (start>=0 and end < len(string) and string[start]==string[end]):
             start -= 1
             end += 1
         return string[start+1:end]
@@ -30,29 +30,30 @@ class Solution:
         if s == s[::-1]:
             return s
 
-        longest = self.longestPalindrome(s)
-        length = len(longest)
+        sub = self.longestPalindrome(s)
+        len_sub = len(sub)
+        idx = s.index(sub)
 
-        left_index = s.index(longest)
-        right_index = left_index + length - 1 if length else 0
+        single = False
 
+        if not sub:
+            single = True
+            sub = s[0]
 
-        print ('ori', s, 'longest', longest, 'length', length, 'left', left_index, 'right',
-               right_index, 'new', s[:])
+        print ('sub', sub)
+        print ('idx', idx)
+        print ('len_sub', len_sub)
+        print ('first', s[len_sub:][::-1])
 
-        return s[right_index + 1:][::-1] + s
+        if single:
+            return s[1:][::-1] + s
+        if idx == 0:
 
-
-        """
-        if i > len(s) / 2:
-            print ("c")
-            return s[i:]  + s
+            return s[len_sub:][::-1] + s
         else:
-            print ("d")
-            print (s[:i])
-            return s + s[:i]
-        """
+            return s[1:][::-1] + s
+
 
 r = Solution()
-res = r.shortestPalindrome('abb')
+res = r.shortestPalindrome("abb")
 print (res)

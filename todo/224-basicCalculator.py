@@ -1,51 +1,47 @@
+LITERAL = 0, EXPRESSION = 1
+
+class Literal(object):
+
+    def __init__(self, value):
+
+        self.value = value
+
+class Expression(object):
+
+    def __init__(self, operand, left, right):
+
+        self.operand = operand
+        self.left = left
+        self.right = right
+
 class Tree(object):
 
-    def __init__(self, o, l,r):
-        self.operator = o
-        self.left = l
-        self.right = r
+    def __init__(self, enum,value ):
+        self.ENUM = enum
+        self.value = value
 
 class Solution(object):
 
-    def init_strip(self,s):
-        return  ''.join(s.split())
+    def parse(self, s, acc, prev):
 
-    def parse(self, s):
+        if not s:
+            return
 
         first, rest = s[0], s[1:]
 
-        if first in ["", None, []]:
-            return 0
+        if first == '+':
 
-        elif first == "(":
+            expression = Expression(first, prev, parse(rest))
 
-            close_expression = 1
-            expression = []
+            return Tree(EXPRESSION, expression)
 
-            for idx,letter in enumerate(rest):
+        if first == '(':
 
-                if letter == "(":
-                    close_expression +=1
-                elif letter == ")":
-                    close_expression -=1
-                else:
-                    expression.append(letter)
+            return Tree(EXPRESSION, parse(rest, acc,
 
-                if close_expression == 0:
-                    break
 
-            expression_one = ''.join(expression)
-            operator = rest[idx + 1]
-            expression_two = self.parse(s[idx + 2:])
 
-            return Tree(operator, expression_one, expression_two)
 
-        else:
-            print ('first', first)
-            if len(rest) > 0:
-                return Tree(rest[0], int(first), self.parse(rest[1:]))
-            else:
-                return Tree('+', 0, 0)
 
     def main(self, s):
 

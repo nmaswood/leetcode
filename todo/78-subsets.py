@@ -29,5 +29,5 @@ class Solution(object):
 r = Solution()
 
 a = [1,2,3]
-
+ear
 print (r.subsets(a))

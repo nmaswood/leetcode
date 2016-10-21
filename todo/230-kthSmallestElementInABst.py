@@ -6,6 +6,12 @@
 #         self.right = None
 
 class Solution(object):
+
+    def __init__(self):
+
+        self.seen = 0
+        self.done = False
+
     def kthSmallest(self, root, k):
         """
         :type root: TreeNode
@@ -17,13 +23,16 @@ class Solution(object):
 
         def f(root):
 
-            if root is None or len(acc)  - 1 == k:
+            if root is None or done:
                 return
 
             f(root.left)
-            acc.append(root.val)
+            if self.seen == k:
+                self.val = root.val
+                self.done = True
+                return
+            self.seen +=1
+
             f(root.right)
         f(root)
-        print(acc)
-
-        return acc[-1]
+        return self.seen

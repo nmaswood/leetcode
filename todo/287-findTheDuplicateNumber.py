@@ -4,23 +4,16 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
+        d = set()
+        for num in nums:
 
-        the_max = max(nums)
+            if num in d:
+                return num
 
-        the_range = range(1,the_max+1)
-
-        s_expected = sum(the_range)
-        l_expected = len(the_range)
-
-
-        s_actual = sum(nums)
-        l_actual = len(nums)
-
-        sum_difference = s_actual - s_expected
-        l_difference = l_actual - l_expected
+            d.add(num)
+        
 
 
-        return sum_difference / l_difference
 
 r  = Solution()
 

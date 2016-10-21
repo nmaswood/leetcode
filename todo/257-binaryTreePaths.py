@@ -1,8 +1,9 @@
-class TreeNode:
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
 
 class Solution:
     # @param {TreeNode} root
@@ -15,18 +16,15 @@ class Solution:
     	def sub(tree, soFar):
 
     		if not tree:
-
-    			print ("fuck")
-    			print (soFar)
-    			acc.append('->'.join(list(soFar)))
+    			acc.append('->'.join(soFar))
     			return
 
-    		sub(root.left, soFar  + str(tree.val))
-    		sub(root.right, soFar  + str(tree.val))
+            newList = soFar[:] 
+            newList.append(str.val)
+
+    		sub(root.left, newList[:])
+    		sub(root.right, newList[:]
 
     	sub(root,'')
 
     	return acc
-r = Solution()
-res = r.binaryTreePaths(TreeNode(1))
-print (res)

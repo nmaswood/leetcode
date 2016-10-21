@@ -12,22 +12,22 @@ class Solution(object):
 
         saveHead = head
 
-        while curr:
 
-            saveNext = curr.next
-            nextNext = curr.next.next
+        swap = True
 
+
+
+        while curr.next:
+
+            if swap:
+
+                saveCurr =  curr.val
+                saveNext =  curr.next.val
+
+                curr.val = saveNext
+                curr.next.val = saveCurr
+
+            swap =  not swap
             curr.next = nextNext
 
-
-
-
-
-
-
-
-
-
-
-
-
+        return head

@@ -1,9 +1,22 @@
+TEN_SECONDS = 10000
+
 class Logger(object):
 
     def __init__(self):
-        """
-        Initialize your data structure here.
-        """
+
+        self.d = {}
+
+    def _check_(self, word,ts):
+
+        temp = self.d.get(word,0)
+        self.d[word] = ts
+
+        return temp
+
+    def _should_print(self, word,ts):
+
+        return self._check_(word,ts) >= TEN_SECONDS
+
 
     def shouldPrintMessage(self, timestamp, message):
         """
@@ -14,6 +27,12 @@ class Logger(object):
         :type message: str
         :rtype: bool
         """
+
+        if self._should_print(word, timestamp):
+            print (message)
+
+
+        
 
 
 # Your Logger object will be instantiated and called as such:

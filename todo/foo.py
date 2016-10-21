@@ -1,35 +1,93 @@
-bag1 = [1,2,3,4,5,1,111,2,2,3,4]
+class Date():
 
-# Remove all duplicates
+	def __init__(self, raw):
 
-no_dups_1 = set(bag1)
+		d,m,y = raw.split('-', 2)
 
+		self.d = d
+		self.m = m
+		self.y = y
 
-#print (no_dups)
-bag2 =  [1,2,3,4,11,2,3,41,1]
+	def meth(self):
+		pass
 
-no_dups_2 = set(bag2)
+	def meth(self):
+		pass
 
+	def meth(self):
 
+		pass
+	def meth(self):
+		pass
 
-print (no_dups_1)
-print (no_dups_2)
-
-bag_3 = set()
-
-#bag_3.add()
-
-
-for  i in no_dups_1:
-
-	if i in no_dups_2:
-
-		bag_3.add(i)
-
-#print (bag_3)
+	def __sub__(self,other):
+		return self.abs_days() - other.abs_days()
 
 
-print (no_dups_1.intersection(no_dups_2))
+
+class Solution():
+
+	def __init__(self):
+		self.foo = 'bar'
+
+	def find(self, binary_tree, find_me):
+
+
+		def _find(root, looking_for, value):
+
+			if not root:
+				return None
+
+			val, left, right = root.val, root.left, root.right
+
+
+			if val == looking_for:
+
+				if right is None:
+					return value
+
+				return right.val
+
+
+			traverse_me_next = left if val > looking_for else right
+
+			return _find(traverse_me_next, looking_for, val)
+
+		res  = _find(binary_tree, find_me, None)
+
+		if res is None:
+			raise ValueError("Value was not found in tree")
+			
+		return res
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

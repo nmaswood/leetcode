@@ -18,7 +18,9 @@ class Solution(object):
         return i == len(s)
 r = Solution()
 
-res = r.isSubsequence('FUCKYOU', 'FUCK')
+res = r.isSubsequence('FUCK', 'FUCKYOU')
+
+print (res)
 
 
 

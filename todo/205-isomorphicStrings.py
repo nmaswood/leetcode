@@ -1,31 +1,32 @@
 class Solution(object):
-    def isIsomorphic(self, s, t):
+
+    def toDict(self, pattern):
+
+        letters = {}; numbers = {};
+
+        numbers = [None for _ in range(len(pattern))]
+        counter = 0
+
+
+        for (index, letter) in enumerate(pattern):
+
+            if letter not in letters:
+                letters[letter] = counter
+                counter += 1
+
+            numbers[index] = letters[letter]
+
+        return numbers
+
+
+    def isIsomorphic(self, pattern, str):
         """
-        :type s: str
-        :type t: str
+        :type pattern: str
+        :type str: str
         :rtype: bool
         """
-        if len(s) != len(t): return False
 
+        list1 = self.toDict(pattern)
+        list2 = self.toDict(str)
 
-
-        prev1 = s[0]
-        prev2 = t[0]
-
-        for l1,l2 in zip(s[1:],t[1:]):
-
-            if l1 == prev1 and l2 != prev2:
-                return False
-            elif l1 != prev1 and l2 == prev2:
-                return False
-
-            prev1 = l1
-            prev2 = l2
-
-        return True
-
-
-
-#r = Solution()
-#x = r.isIsomorphic('foo', 'egg')
-#print (x)
+        return list1 == list2

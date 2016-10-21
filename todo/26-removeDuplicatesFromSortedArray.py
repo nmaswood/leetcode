@@ -1,53 +1,31 @@
 class Solution(object):
 
-    def mark(self, nums):
+    def removeDuplicates(self, nums):
 
-        prev = None
-
-        t = 0
+        i = 0
+        j = 0
 
         for index, num in enumerate(nums):
 
-            if num == prev:
-                nums[index] = None
-                t+=1
+            if index + 1 == len(nums):
+                nums[j] = num
+                j += 1
 
-            prev = num
+            elif num < nums[index + 1]:
 
-        return nums
+                nums[j] = num
+                j += 1
 
+        for k in range(j, len(nums)):
 
-    def next_dup(self, nums, i):
-
-        for idx in range(i, len(nums)):
-
-            if nums[idx]:
-                return idx
-
-    def removeDuplicates(self, nums):
-
-        nums = self.mark(nums)
-
-        l = len([x for x in nums if x is not None])
-
-        i = -1
-
-        print (nums)
-        for idx, num in enumerate(nums):
-
-            if num is None:
-                if i == -1:
-                    i = idx
-            else:
-                if i != -1:
-                    nums[i] = num
-                    nums[idx] = None
-                    i += 1
-        print (nums)
-        return l
+            nums[k] = None
 
 
 
+
+
+ori = [1,2,2,3,3,3,4,4]
+print (ori)
 r = Solution()
-res = r.removeDuplicates([0,0,0,0,0,1,2,2,3,3,4,4])
-print (res)
+res = r.removeDuplicates(ori)
+print (ori)

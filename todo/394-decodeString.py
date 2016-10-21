@@ -1,19 +1,42 @@
 class Solution(object):
     def decodeString(self, s):
 
-        def f(curr,acc,mul, looking_for_paren):
+        def f(curr,acc,mul,temp_acc, looking_for_paren):
 
             if not curr:
-                return curr
-            elif:
-                first, rest = curr[0], curr[1:]
 
-                if looking_for_paren and first == ']':
-                    return (mul * acc) + f(rest, '', 1, False)
-                elif first == '[':
-                    return f(rest, '', mul, True)
-                    return f(rest, acc + first, mul, True):
-                elif first in [1,2,3,4,5,6,7,8,9]:
-                    return f(rest, acc, mul + first, looking_for_paren)
-                else:
-                    return f(rest, acc + first, mul, False)
+                return acc
+
+            first, rest = curr[0], curr[1:]
+
+            if first.isdigit():
+
+                return f(
+                    rest,
+                    acc, 
+                    mul,
+                    '', 
+
+                    looking_for_paren)
+
+            elif first == '[':
+
+                return f(rest, acc, mul,temp_acc, True)
+
+            elif first == ']':
+
+                accPrime = mul * (temp_acc)
+
+                return f(rest, accPrime, None, '', False)
+
+            else:
+
+
+                return f(rest, acc, mul, first + temp_acc, looking_for_paren)
+
+        return f(s, '', None, '', False)
+
+
+r = Solution()
+
+r.decodeString('3[a]2[bc]')

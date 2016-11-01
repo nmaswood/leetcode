@@ -6,12 +6,16 @@
 #         self.right = None
 
 class Solution(object):
+
+    def __init__(self):
+
+        self.acc = 0
+
     def sumOfLeftLeaves(self, root):
         """
         :type root: TreeNode
         :rtype: int
         """
-        acc = []
 
         def f(root, collect):
 
@@ -20,20 +24,9 @@ class Solution(object):
 
             f(root.left, True)
             if collect:
-                acc.append(root.val)
+                acc += root.val
             f(root.right, False)
         f(root, False)
 
-        return sum(acc)
-
-
-
-
-
-
-
-
-
-
-
+        return acc
 

@@ -4,17 +4,31 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
+        if len(nums) == 0:
+            return 0
+        elif len(nums) == 1:
+            return nums[0]
+        elif len(nums) == 2:
+            return max(nums)
 
-        prev = 0
-        curr = 0
+        costs = [0 for _ in range(len(nums))]
+        costs[0] = nums[0]
 
-        for num in nums:
-            temp = curr
-            curr = max(prev + num, curr)
-            prev = temp
-        return curr
+        costs[1] = nums[1]
+
+
+        for i, num in enumerate(nums[2:]):
+            i = i + 2
+            costs[i]  = max(
+
+                costs[i-2] + num,
+                costs[i-1]
+            )
+
+        return costs[-1]
+
 r = Solution()
-res = r.rob([1,2,3,4])
+res = r.rob([1,1])
 print (res)
 
 

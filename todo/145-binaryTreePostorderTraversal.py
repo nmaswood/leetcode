@@ -37,10 +37,30 @@ class Solution(object):
 
         return acc
 
+class Solution2(object):
+
+    def __init__(self):
+        pass
 
 
 
+    def postorderTraversal(self, root):
 
+        result = []
 
+        stack = [(root, False)]
 
+        while stack:
 
+            root, is_visited = stack.pop()
+
+            if root is None:
+                continue
+            elif is_visited:
+                result.append(root.val)
+            else:
+                stack.append((root,True))
+                stack.append((root.right,False))
+                stack.append((root.left,False))
+
+        return result

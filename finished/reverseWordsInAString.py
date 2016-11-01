@@ -9,3 +9,19 @@ class Solution(object):
         return ' '.join(no_spaces.split(" ")[::-1])
         
         
+
+
+class Solution():   
+
+	"""
+	"""
+
+	def __init__(self):
+		pass
+
+
+	def method(self):
+		pass
+
+	def method(self):
+		pass	

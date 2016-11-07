@@ -1,6 +1,6 @@
 from itertools import combinations
 
-class Solution0(object):
+class Solution0():
 
     """
     O(exp) Time O(exp) Space
@@ -18,9 +18,9 @@ class Solution0(object):
 
         acc = set()
 
-        for i in len(nums):
+        for i in range(len(nums) + 1):
 
-            acc |= set(combinations(nums), i)
+            acc |= set(combinations(nums, i))
 
         return acc
 

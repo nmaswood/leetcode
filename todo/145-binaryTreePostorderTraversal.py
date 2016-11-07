@@ -42,8 +42,6 @@ class Solution2(object):
     def __init__(self):
         pass
 
-
-
     def postorderTraversal(self, root):
 
         result = []

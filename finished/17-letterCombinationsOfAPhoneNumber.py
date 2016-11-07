@@ -1,22 +1,20 @@
-class Tree():
+"""
+17. Letter Combinations of a Phone Number
 
-    def __init__(self,root):
-        self.root = root
-        self.children = []
 
-    def __str__(self, level=0):
-        ret = "\t"*level+repr(self.root)+"\n"
-        for child in self.children:
-            ret += child.__str__(level+1)
-        return ret
+Given a digit string, return all possible letter combinations that the number could represent.
 
-    def __repr__(self):
-        return '<tree node representation>'
+A mapping of digit to letters (just like on the telephone buttons) is given below.
 
+Input:Digit string "23"
+Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]
+
+"""
 class Solution(object):
 
-    def num_to_char(self, char):
-        return {
+    def __init__(self):
+
+        self.d = {
             "0": "_",
             "1": None,
             "2": "abc",
@@ -27,69 +25,54 @@ class Solution(object):
             "7": "pqrs",
             "8": "tuv",
             "9": "wxyz",
-        }[char]
-
-    def num_str_to_char_list(self, num_str):
-
-        return [list(self.num_to_char(num)) for num in list(num_str)]
+        }
 
     def letterCombinations(self, digits):
 
         """
+        Explanation:
+        Recursively build out a tree structure
+        for the string "23" and collect all the paths
+        to leaf nodes
+
+        2  -> "abc" , 3 -> "def"
+
+                    ROOT
+                /    |     \
+            a        b      c
+        /   |  \   / | \  / | \
+        d   e   f  d  e f d e f
+
+        Time : O(exp)
+        Space: O(exp)
+
+
         :type digits: str
         :rtype: List[str]
         """
+        combinations = set()
 
-        def process_tree(tree, list_of_char_list):
+        def recurse(_digits, acc):
+            if not _digits:
+                combinations.add(acc)
+                return
 
-            if len(list_of_char_list) == 0:
-                return tree
+            first, rest = _digits[0], _digits[1:]
 
-            first = list_of_char_list[0]
-            rest = list_of_char_list[1:]
+            chars = self.d[first]
 
-            for letter in first:
-                new_tree = process_tree(Tree(letter), rest)
-                tree.children.append(new_tree)
+            for char in chars:
 
-            return tree
+                recurse(rest, acc + char)
 
-        def tree_to_str(tree, acc):
+        recurse(digits, '')
 
-            root = tree.root
-            children = tree.children
-
-            if not children:
-                return [x + root for x in acc]
-            else:
-                f = []
-                for child in children:
-                    d = tree_to_str(child, [x + root for x in acc])
-                    f.append(d)
-                return f
-
-        def flatten(S):
-            if S == []:
-                return S
-            if isinstance(S[0], list):
-                return flatten(S[0]) + flatten(S[1:])
-            return S[:1] + flatten(S[1:])
-
-        if digits == "":
-            return []
-
-        as_list_of_lists = self.num_str_to_char_list(digits)
-
-        processed_tree = process_tree(Tree(""), as_list_of_lists)
-
-        strs = tree_to_str(processed_tree, [''])
-        return flatten(strs)
+        return combinations
 
 
-#r = Solution()
-# print (r.letterCombinations('23'))
-
-# Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+r = Solution()
+res = r.letterCombinations('23')
+print (res)
 
 
 

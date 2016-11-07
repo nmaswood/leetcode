@@ -23,7 +23,6 @@ class Solution():
 				acc.add(seen)
 				return
 
-
 			for (index, letter) in enumerate(rest):
 
 				plucked = self.pluck(rest, index)
@@ -39,7 +38,7 @@ class Solution():
 		return acc
 
 r = Solution()
-res = r.permutations_size_k('abcd',3)
+res = r.permutations_size_k('abcd',2)
 print (res)
-res  = permutations('abcd', 3)
-print ([''.join(x) for x in res])
+res  = permutations('abcd', 2)
+print (set([''.join(x) for x in res]))

@@ -1,61 +1,45 @@
 """
-70 Climbing Stairs
+412. Fizz Buzz
+Write a program that outputs the string representation of numbers 1 to n
 
-You are climbing a stair case. It takes n steps to reach to the top.
-Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
-Subscribe to see which companies asked this question
-
-1 step -> 2 steps -> 1 step ... 
-2 step -> 2 steps -> 2 step ...
-
-f(5) -> 8
+* multiples of three it should output “Fizz”
+* five output “Buzz”.
+* For numbers which are multiples of both three and five output “FizzBuzz”.
 
 """
 
 class Solution(object):
-    """
-    Explanation:
 
-    This problem is the Fibonacci sequence in disguise
-
-    You have a recurrence relationship that is
-
-    S_i = S_(i-1) + S_(i-2)
-
-    and you have to solve it without blowing the stack,
-    i.e. save the solution to previous sub problems
-
-    O(n) Time
-    O(n) Space
-
-    """
-    def climbStairs(self, n):
-
+    def fizzBuzz(self, n):
         """
+        Explanation:
+
+        For iterate through the numbers [1,n] and for each number
+        check what numbers it is divisible by.
+
+        Time : O(n)
+        Space: O(n)
         :type n: int
-        :rtype: int
+        :rtype: List[str]
         """
 
-        # Empty array to save solutions
+        acc = []
 
-        steps = [0 for _ in range(n+1)]
+        for i in range(1, n+1):
 
-        # Set Base cases
+            if i % 15 == 0:
+                acc.append("FizzBuzz")
+            elif i % 3 == 0:
+                acc.append("Fizz")
+            elif i % 5 == 0:
+                acc.append("Buzz")
+            else:
+                acc.append(str(i))
 
-        for num in (0,1,2):
-            steps[num] = num
-
-        # Solve sub problems
-
-        for num in range(3,n+1):
-
-            steps[num] = steps[num-1] + steps[num-2]
-
-        # Return Solution
-
-        return steps[n]
+        return acc
 
 
 r = Solution()
-res = r.climbStairs(5)
+res = r.fizzBuzz(15)
+
 print (res)

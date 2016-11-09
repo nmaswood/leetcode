@@ -7,9 +7,9 @@
 
 class Solution(object):
 
-	def __init__(self):
+    def __init__(self):
 
-		self.max = float('-inf')
+        self.max = float('-inf')
 
     def maxPathSum(self, root):
         """
@@ -19,13 +19,13 @@ class Solution(object):
 
         def traverse(t, soFar):
 
-        	if not t:
-        		self.max = max(self.max, soFar)
+            if not t:
+                self.max = max(self.max, soFar)
 
-        	val = t.val
+            val = t.val
 
-        	traverse(root.left, val  + soFar)
-        	traverse(root.right, val  + soFar)
+            traverse(root.left, val  + soFar)
+            traverse(root.right, val  + soFar)
 
         traverse(root, 0)
 

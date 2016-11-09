@@ -1,11 +1,10 @@
 """
-
 217. Contains Duplicate
+
 
 [1,2,3,1] -> True
 
 [1,2,3] ->  False
-
 """
 
 class Solution(object):
@@ -27,10 +26,9 @@ class Solution(object):
 
         for num in nums:
 
+        	if num in seen:
+        		return True
 
-            if num in seen:
-                return True
-
-            seen.add(num)
+        	seen.add(num)
 
         return False

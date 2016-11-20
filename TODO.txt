@@ -1,0 +1,5 @@
+* make a video for print list in reverse
+* make video for that anagram one
+* reverse linked list
+* delete node in linked list
+* valid anagram

@@ -11,6 +11,9 @@ class Solution(object):
 
         self.seen = 0
         self.done = False
+        self.k = 0
+        self.val = 0
+
 
     def kthSmallest(self, root, k):
         """
@@ -18,12 +21,11 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-
         acc = []
 
         def f(root):
 
-            if root is None or done:
+            if root is None or self.done:
                 return
 
             f(root.left)
@@ -31,8 +33,8 @@ class Solution(object):
                 self.val = root.val
                 self.done = True
                 return
-            self.seen +=1
+            self.seen += 1
 
             f(root.right)
         f(root)
-        return self.seen
+        return self.val

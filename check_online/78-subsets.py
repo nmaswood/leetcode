@@ -28,7 +28,6 @@ class Solution(object):
 
                     sub(plucked)
         sub(tuple(nums))
-        print(seen)
         return list(seen)
 
 

@@ -22,7 +22,7 @@ class Solution():
             valOne = queueOne.get()
             valTwo = queueTwo.get()
 
-            if valOne.root != valTwo.root():
+            if valOne.root != valTwo.root:
                 return False
 
             leftOne, rightOne = valOne.left, valOne.right

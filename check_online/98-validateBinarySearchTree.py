@@ -20,11 +20,6 @@ class Solution(object):
             if val > lessThan or val < greaterThan:
                 return False
 
-            return sub(left, greaterThan, val) and  sub(left, val, lessThan) 
+            return sub(left, greaterThan, val) and  sub(left, val, lessThan)
 
         return sub(root, float('inf'), float('-inf'))
-
-
-
-            
-        

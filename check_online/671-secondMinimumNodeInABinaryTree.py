@@ -15,6 +15,7 @@ class Solution(object):
         min_2 = None
 
         stack = [root]
+        seen = set()
 
         while stack:
             value = stack.pop()
@@ -65,6 +66,9 @@ class Solution(object):
 
 
         print (h)
+        s = set()
+        h = [x for x in
+
         return heapq.nsmallest(2, h)[1]
 
 a = TreeNode(4)

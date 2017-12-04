@@ -49,14 +49,14 @@ class Solution(object):
         return head
 
 a = ListNode(1)
-b = ListNode(2)
-c = ListNode(3)
-d = ListNode(4)
+#b = ListNode(2)
+#c = ListNode(3)
+#d = ListNode(4)
 
-a.next = b
-b.next = c
-c.next = d
+#a.next = b
+#b.next = c
+#c.next = d
 
 r = Solution()
-x = r.removeNthFromEnd(a, 3)
+x = r.removeNthFromEnd(a, 1)
 print (x)

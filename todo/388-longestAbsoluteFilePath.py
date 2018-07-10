@@ -1,61 +1,72 @@
-s = "dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext"
+from collections import deque
+from pdb import set_trace
+
+s = r"dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext"
 
 
 class Tree():
 
+    def __init__(self, val, children=None, is_root=False):
+        if children is None:
+            children = []
 
-    def __init__(self,val, children = []):
         self.val = val
         self.children = children
+        self.is_root = is_root
+
+    def __str__(self):
+        acc = []
+        stack = deque()
+        stack.append((self, 0))
+        depth = 0
+
+        while stack:
+
+            node, depth = stack.pop()
+            acc.append('{}{}'.format('\t' * depth, node.val))
+
+            for child in node.children:
+                stack.append((child, depth + 1))
+
+        return '\n'.join(acc)
+
+
+    def __repr__(self):
+        return str(self)
 
 
 class Solution(object):
 
+    def parse(self, input_str):
+        tokens = input_str.split('\\n')
+        root = Tree(None, None, True)
+        head = root
+        stack = deque()
 
-    def parse(self, raw_str,tree_so_far ):
+        stack.append((head, 0))
 
-        if not raw_str:
-            return tree_so_far
+        for token in tokens:
+            token_depth = token.count('\\t') + 1
+            token_stripped = token.lstrip('\\t')
 
-        first, rest = raw_str[0], rest[1:]
+            stack_head, stack_depth = stack[-1]
 
-        if first.startswith("\t"):
+            set_trace()
 
-            return parse(
-                rest,
-                rtree_so_far.children.append(first.lstrip("\t"))
-                )
-        else:
+            while stack_depth + 1 != token_depth:
+                stack_head, stack_depth = stack.pop()
 
+            new_node = Tree(token_stripped)
+            stack_head.children.append(new_node)
+            stack.append((new_node, stack_depth + 1))
 
-            return self.parse(
-                rest, 
-                tree_so_far.chidren.append()
-
-
-
-
-                )
-
-
-
-
-
-
-
+        return root
 
     def lengthLongestPath(self, input):
         """
         :type input: str
         :rtype: int
         """
-        pass        
+        pass
 
-        fo
-
-
-splat = s.split("\n")
-print (splat)
-
-for l in splat:
-    print (l)
+sol = Solution()
